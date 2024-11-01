@@ -1,0 +1,11 @@
+body {
+    background-image: url('https://media.giphy.com/media/8J5t1oFptXblf5fW8D/giphy.gif'); /* URL del globo terráqueo girando */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
