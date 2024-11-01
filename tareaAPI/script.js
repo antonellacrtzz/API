@@ -1,37 +1,50 @@
-
 const url = 'https://restcountries.com/v3.1/all';
+let paises = [];
 
-async function obtenerPaises() {
+// Función para cargar los países desde la API
+async function cargarPaises() {
     try {
         const respuesta = await fetch(url);
-        const paises = await respuesta.json();
-
-        // Selecciona el contenedor para agregar los datos
-        const contenedor = document.getElementById('contenedorPaises');
-        paises.forEach(pais => {
-            // Crea un elemento div para cada país
-            const paisDiv = document.createElement('div');
-            paisDiv.classList.add('pais');
-
-            // Obtén el nombre, bandera y población del país
-            const nombre = pais.name.common;
-            const bandera = pais.flags.png;
-            const poblacion = pais.population;
-
-            // Agrega el contenido al div
-            paisDiv.innerHTML = `
-                <h2>${nombre}</h2>
-                <img src="${bandera}" alt="Bandera de ${nombre}" width="100">
-                <p>Población: ${poblacion.toLocaleString()}</p>
-            `;
-
-            // Añade el div al contenedor
-            contenedor.appendChild(paisDiv);
-        });
+        paises = await respuesta.json();
     } catch (error) {
-        console.error("Error al obtener los datos de países:", error);
+        console.error("Error al cargar los datos de países:", error);
     }
 }
 
-// Llama a la función para cargar los datos
-obtenerPaises();
+// Llama a cargarPaises() al cargar la página
+cargarPaises();
+
+// Función para buscar y mostrar un país
+function buscarPais() {
+    const nombreBuscado = document.getElementById('buscador').value.toLowerCase();
+    const pais = paises.find(p => p.name.common.toLowerCase() === nombreBuscado);
+
+    const contenedorResultado = document.getElementById('resultadoPais');
+    contenedorResultado.innerHTML = ''; // Limpiar el resultado anterior
+
+    if (pais) {
+        // Extraer datos
+        const nombre = pais.name.common;
+        const bandera = pais.flags.png;
+        const region = pais.region;
+        const capital = pais.capital ? pais.capital[0] : 'No disponible';
+        const idiomas = pais.languages ? Object.values(pais.languages).join(', ') : 'No disponible';
+
+        // Crear tarjeta de Bootstrap
+        const tarjeta = `
+            <div class="card" style="width: 18rem;">
+                <img src="${bandera}" class="card-img-top" alt="Bandera de ${nombre}">
+                <div class="card-body">
+                    <h5 class="card-title">${nombre}</h5>
+                    <p class="card-text"><strong>Región:</strong> ${region}</p>
+                    <p class="card-text"><strong>Capital:</strong> ${capital}</p>
+                    <p class="card-text"><strong>Idiomas:</strong> ${idiomas}</p>
+                </div>
+            </div>
+        `;
+
+        contenedorResultado.innerHTML = tarjeta;
+    } else {
+        contenedorResultado.innerHTML = '<p class="text-danger">País no encontrado. Intenta con otro nombre.</p>';
+    }
+}

@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Información de Países</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Información de Países</h1>
-    <div id="contenedorPaises"></div>
+    <div class="container mt-5">
+        <h1 class="text-center">Buscar Información de un País</h1>
+        
+        <!-- Formulario de búsqueda -->
+        <div class="input-group mb-3">
+            <input type="text" id="buscador" class="form-control" placeholder="Escribe el nombre de un país">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" onclick="buscarPais()">Buscar</button>
+            </div>
+        </div>
+
+        <!-- Contenedor para mostrar el resultado -->
+        <div id="resultadoPais" class="mt-4"></div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
