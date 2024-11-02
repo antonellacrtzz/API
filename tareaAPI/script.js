@@ -1,7 +1,6 @@
 const url = 'https://restcountries.com/v3.1/all';
 let paises = [];
 
-// Función para cargar los países desde la API
 async function cargarPaises() {
     try {
         const respuesta = await fetch(url);
@@ -11,26 +10,24 @@ async function cargarPaises() {
     }
 }
 
-// Llama a cargarPaises() al cargar la página
 cargarPaises();
 
-// Función para buscar y mostrar un país
+
 function buscarPais() {
     const nombreBuscado = document.getElementById('buscador').value.toLowerCase();
     const pais = paises.find(p => p.name.common.toLowerCase() === nombreBuscado);
 
     const contenedorResultado = document.getElementById('resultadoPais');
-    contenedorResultado.innerHTML = ''; // Limpiar el resultado anterior
+    contenedorResultado.innerHTML = ''; 
 
     if (pais) {
-        // Extraer datos
+        
         const nombre = pais.name.common;
         const bandera = pais.flags.png;
         const region = pais.region;
         const capital = pais.capital ? pais.capital[0] : 'No disponible';
         const idiomas = pais.languages ? Object.values(pais.languages).join(', ') : 'No disponible';
 
-        // Crear tarjeta de Bootstrap
         const tarjeta = `
             <div class="card" style="width: 18rem;">
                 <img src="${bandera}" class="card-img-top" alt="Bandera de ${nombre}">

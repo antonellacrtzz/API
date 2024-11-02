@@ -1,35 +1,91 @@
-/* Imagen de fondo con animación más dinámica */
-body::before {
-    content: "";
-    background-image: url('planeta.jpg');
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    animation: dynamicBackground 20s ease-in-out infinite;
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-image: url('tierraGif.gif');
+    background-size: cover; /* Hace que la imagen ocupe toda la pantalla */
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Hace que el fondo se mantenga fijo al hacer scroll */
 }
 
-
-/* Animación de fondo dinámica */
-@keyframes dynamicBackground {
-    0% {
-        transform: scale(1) translate(0, 0);
-    }
-    25% {
-        transform: scale(1.1) translate(10px, -10px);
-    }
-    50% {
-        transform: scale(1.2) translate(-10px, 10px);
-    }
-    75% {
-        transform: scale(1.1) translate(10px, 10px);
-    }
-    100% {
-        transform: scale(1) translate(0, 0);
-    }
+/* Estilo para el título */
+h1 {
+    color: #FF69B4; 
+    font-weight: bold;
+    background-color:  rgba(188, 239, 250, 0.85); 
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
+/* Contenedor de la barra de búsqueda */
+.input-group {
+    background-color: rgba(157, 224, 239, 0.85);   
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Botón de búsqueda */
+.input-group-append .btn {
+    background-color: #FFB6C1; 
+    border-color: #FFB6C1;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
+    font-weight: bold;
+}
+
+.input-group-append .btn:hover {
+    background-color: #FF69B4; 
+}
+
+/* Campo de entrada */
+.input-group .form-control {
+    border-radius: 8px;
+    border: 1px solid #FFC0CB; 
+    background-color: rgba(255, 245, 247, 0.85); 
+    color: #555;
+}
+
+/* Estilo para la tarjeta */
+.card {
+    background-color: rgba(255, 245, 247, 0.9); 
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    transition: transform 0.3s ease; /* Animación al hacer hover */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+/* Imagen de la bandera */
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    max-height: 180px;
+    object-fit: cover;
+}
+
+/* Título de la tarjeta */
+.card-title {
+    color: #FF69B4; 
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Texto de la tarjeta */
+.card-text {
+    color: #555; 
+    font-size: 1rem;
+}
+
+#resultadoPais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; 
+}
